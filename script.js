@@ -13,10 +13,15 @@ window.addEventListener("DOMContentLoaded", function () {
     resultElement.style.display = "none";
     notFoundElement.style.display = "none";
 
-    // Gantilah URL ini jika ingin mengambil JSON langsung dari GitHub
-    fetch("Peserta%20JPKM%20s.d%2010%20Juni%202025%20New.json")
-      .then((response) => response.json())
+    fetch("https://raw.githubusercontent.com/JPKMSuryaSumirat/DataPesertaJPKM/main/Peserta%20JPKM%20s.d%2010%20Juni%202025%20New.json")
+      .then((response) => {
+        if (!response.ok) throw new Error("Network response not ok");
+        return response.json();
+      })
       .then((data) => {
+        console.log("Data JSON:", data);
+        console.log("Input:", nameInput, packageInput);
+
         const peserta = data.find((item) => {
           const namaPeserta = item["Nama Member"]?.trim().toLowerCase();
           const jenisPaket = item["Nama Paket"]?.trim().toUpperCase();
@@ -42,7 +47,7 @@ window.addEventListener("DOMContentLoaded", function () {
       .catch((error) => {
         loadingElement.style.display = "none";
         notFoundElement.style.display = "block";
-        console.error("Terjadi kesalahan:", error);
+        console.error("Fetch error or parsing error:", error);
       });
   });
 });
