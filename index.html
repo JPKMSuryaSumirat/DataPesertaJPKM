@@ -48,18 +48,20 @@
   <h2>Pencarian Data Peserta JPKM</h2>
 
   <form id="identity-form">
+    <label for="jpkm">No JPKM:</label>
+    <input type="text" id="jpkm" placeholder="Contoh: AA01000003" />
+
     <label for="name">Nama Peserta:</label>
-    <input type="text" id="name" placeholder="Contoh: Noval Anugrah Ramadan" required />
+    <input type="text" id="name" placeholder="Contoh: Noval Anugrah Ramadan" />
 
     <label for="package">Nama Paket:</label>
-    <input type="text" id="package" placeholder="Contoh: DASAR PLUS" required />
+    <input type="text" id="package" placeholder="Contoh: DASAR PLUS" />
 
     <button type="submit">Cari</button>
   </form>
 
-  <!-- Bagian yang dibutuhkan oleh script.js -->
   <div id="loading" style="display: none;">Memuat data...</div>
-  <div id="not-found" style="display: none; color: red;">Data tidak ditemukan. Silakan periksa kembali nama dan paket.</div>
+  <div id="not-found" style="display: none; color: red;">Data tidak ditemukan. Silakan periksa kembali input Anda.</div>
   <div id="result" style="display: none; margin-top: 20px;"></div>
 
   <script src="script.js"></script>
