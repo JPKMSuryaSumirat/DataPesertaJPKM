@@ -13,12 +13,13 @@ window.addEventListener("DOMContentLoaded", function () {
     resultElement.style.display = "none";
     notFoundElement.style.display = "none";
 
+    // Gantilah URL ini jika ingin mengambil JSON langsung dari GitHub
     fetch("Peserta%20JPKM%20s.d%2010%20Juni%202025%20New.json")
       .then((response) => response.json())
       .then((data) => {
         const peserta = data.find((item) => {
-          const namaPeserta = item["Nama Member"]?.toLowerCase();
-          const jenisPaket = item["Nama Paket"]?.toUpperCase();
+          const namaPeserta = item["Nama Member"]?.trim().toLowerCase();
+          const jenisPaket = item["Nama Paket"]?.trim().toUpperCase();
           return namaPeserta === nameInput && jenisPaket === packageInput;
         });
 
