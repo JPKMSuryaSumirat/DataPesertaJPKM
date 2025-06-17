@@ -19,10 +19,12 @@ window.addEventListener("DOMContentLoaded", function () {
         return response.json();
       })
       .then((data) => {
-        console.log("Data JSON:", data);
+        const pesertaArray = data["Sheet1"] || data;
+
+        console.log("Total Data:", pesertaArray.length);
         console.log("Input:", nameInput, packageInput);
 
-        const peserta = data.find((item) => {
+        const peserta = pesertaArray.find((item) => {
           const namaPeserta = item["Nama Member"]?.trim().toLowerCase();
           const jenisPaket = item["Nama Paket"]?.trim().toUpperCase();
           return namaPeserta === nameInput && jenisPaket === packageInput;
@@ -47,7 +49,7 @@ window.addEventListener("DOMContentLoaded", function () {
       .catch((error) => {
         loadingElement.style.display = "none";
         notFoundElement.style.display = "block";
-        console.error("Fetch error or parsing error:", error);
+        console.error("Terjadi kesalahan:", error);
       });
   });
 });
