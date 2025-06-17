@@ -26,7 +26,7 @@ document.getElementById("identity-form").addEventListener("submit", function (ev
       if (peserta) {
         resultElement.innerHTML = `
           <p><strong>Nama:</strong> ${peserta["NAMA PESERTA"]}</p>
-          <p><strong>No. Peserta:</strong> ${peserta["NO. PESERTA"]}</p>
+          <p><strong>No. Peserta:</strong> ${peserta["NO JPKM"]}</p>
           <p><strong>Jenis Paket:</strong> ${peserta["JENIS PAKET"]}</p>
           <a href="${peserta["LINK KARTU"]}" download class="download-button">Unduh Kartu PDF</a>
         `;
