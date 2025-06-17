@@ -15,14 +15,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
     fetch("https://raw.githubusercontent.com/JPKMSuryaSumirat/DataPesertaJPKM/main/Peserta%20JPKM%20s.d%2010%20Juni%202025%20New.json")
       .then((response) => {
-        if (!response.ok) throw new Error("Network response not ok");
+        if (!response.ok) {
+          throw new Error("Gagal memuat data");
+        }
         return response.json();
       })
       .then((data) => {
-        const pesertaArray = data["Sheet1"] || data;
-
-        console.log("Total Data:", pesertaArray.length);
-        console.log("Input:", nameInput, packageInput);
+        const pesertaArray = data["Sheet1"];
+        if (!Array.isArray(pesertaArray)) throw new Error("Format data tidak sesuai");
 
         const peserta = pesertaArray.find((item) => {
           const namaPeserta = item["Nama Member"]?.trim().toLowerCase();
