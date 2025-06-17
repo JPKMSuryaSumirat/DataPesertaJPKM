@@ -5,64 +5,39 @@ document.getElementById("identity-form").addEventListener("submit", function (ev
   const packageInput = document.getElementById("package").value.trim().toUpperCase();
 
   const loadingElement = document.getElementById("loading");
+  const resultElement = document.getElementById("result");
+  const notFoundElement = document.getElementById("not-found");
+
   loadingElement.style.display = "block";
+  resultElement.style.display = "none";
+  notFoundElement.style.display = "none";
 
-  fetch('https://cdn.glitch.global/faaa3442-55cd-4c89-95bc-b8e71ed96f86/Peserta%20JPKM%20s.d%2010%20Juni%202025%20New.json?v=1749697886549')
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-      return response.json();
-    })
-    .then(data => {
-      const pesertaData = data["Sheet1"];
-      let peserta;
-
-      if (packageInput === "SISWA") {
-        peserta = pesertaData.find(item =>
-          item["Nama Member"].toLowerCase() === nameInput &&
-          item["Nama Paket"].toUpperCase() === "SISWA"
-        );
-      } else if (packageInput === "GURU") {
-        peserta = pesertaData.find(item =>
-          item["Nama Member"].toLowerCase() === nameInput &&
-          item["Nama Paket"].toUpperCase() === "GURU"
-        );
-      }
+  fetch("Peserta%20JPKM%20s.d%2010%20Juni%202025%20New.json")
+    .then((response) => response.json())
+    .then((data) => {
+      const peserta = data.find((item) => {
+        const namaPeserta = item["NAMA PESERTA"]?.toLowerCase();
+        const jenisPaket = item["JENIS PAKET"]?.toUpperCase();
+        return namaPeserta === nameInput && jenisPaket === packageInput;
+      });
 
       loadingElement.style.display = "none";
-
-      const resultContainer = document.getElementById("result-container");
-      resultContainer.innerHTML = "";
 
       if (peserta) {
-        const card = document.createElement("div");
-        card.id = "card";
-        card.innerHTML = `
-          <h2>${peserta["Nama Member"]}</h2>
-          <p><strong>No. Peserta:</strong> ${peserta["No. Peserta"]}</p>
-          <p><strong>Tanggal Lahir:</strong> ${peserta["Tgl Lahir"]}</p>
-          <p><strong>Nama Paket:</strong> ${peserta["Nama Paket"]}</p>
-          <button onclick="unduhPDF()">Unduh Kartu PDF</button>
+        resultElement.innerHTML = `
+          <p><strong>Nama:</strong> ${peserta["NAMA PESERTA"]}</p>
+          <p><strong>No. Peserta:</strong> ${peserta["NO. PESERTA"]}</p>
+          <p><strong>Jenis Paket:</strong> ${peserta["JENIS PAKET"]}</p>
+          <a href="${peserta["LINK KARTU"]}" download class="download-button">Unduh Kartu PDF</a>
         `;
-        resultContainer.appendChild(card);
+        resultElement.style.display = "block";
       } else {
-        resultContainer.innerHTML = "<p style='color:red;'>Data tidak ditemukan.</p>";
+        notFoundElement.style.display = "block";
       }
     })
-    .catch(error => {
+    .catch((error) => {
       loadingElement.style.display = "none";
-      console.error("Fetch error:", error);
-      alert("Terjadi kesalahan saat mengambil data.");
+      notFoundElement.style.display = "block";
+      console.error("Terjadi kesalahan:", error);
     });
 });
-
-function unduhPDF() {
-  const element = document.getElementById("card");
-  const opt = {
-    margin: 0.5,
-    filename: 'kartu_peserta_jpkm.pdf',
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-  };
-  html2pdf().set(opt).from(element).save();
-}
