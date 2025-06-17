@@ -2,7 +2,7 @@ window.addEventListener("DOMContentLoaded", function () {
   document.getElementById("identity-form").addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const jpkmInput = document.getElementById("jpkm").value.trim().toUpperCase();
+    const nojpkmInput = document.getElementById("nojpkm").value.trim().toUpperCase();
     const nameInput = document.getElementById("name").value.trim().toLowerCase();
     const packageInput = document.getElementById("package").value.trim().toUpperCase();
 
@@ -16,18 +16,18 @@ window.addEventListener("DOMContentLoaded", function () {
 
     fetch("Peserta%20JPKM%20s.d%2010%20Juni%202025%20New.json")
       .then((response) => response.json())
-      .then((dataWrapper) => {
-        const data = dataWrapper["Sheet1"];
-        let peserta = null;
+      .then((jsonData) => {
+        const data = jsonData["Sheet1"];
+        const peserta = data.find((item) => {
+          const noMatch = nojpkmInput && item["No JPKM"]?.toUpperCase() === nojpkmInput;
+          const namaMatch = nameInput && item["Nama Member"]?.toLowerCase() === nameInput;
+          const paketMatch = packageInput && item["Nama Paket"]?.toUpperCase() === packageInput;
 
-        if (jpkmInput) {
-          peserta = data.find((item) => item["No JPKM"]?.toUpperCase() === jpkmInput);
-        } else if (nameInput && packageInput) {
-          peserta = data.find((item) =>
-            item["Nama Member"]?.toLowerCase() === nameInput &&
-            item["Nama Paket"]?.toUpperCase() === packageInput
+          return (
+            (nojpkmInput && noMatch) ||
+            (nameInput && paketMatch && namaMatch)
           );
-        }
+        });
 
         loadingElement.style.display = "none";
 
