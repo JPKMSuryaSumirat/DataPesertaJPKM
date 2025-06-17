@@ -2,7 +2,7 @@ window.addEventListener("DOMContentLoaded", function () {
   document.getElementById("identity-form").addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const jpkmInput = document.getElementById("jpkm").value.trim().toUpperCase();
+    const jpkmInput = document.getElementById("nojpkm").value.trim().toUpperCase();
     const nameInput = document.getElementById("name").value.trim().toLowerCase();
     const packageInput = document.getElementById("package").value.trim().toUpperCase();
 
