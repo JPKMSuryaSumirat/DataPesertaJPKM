@@ -13,20 +13,13 @@ window.addEventListener("DOMContentLoaded", function () {
     resultElement.style.display = "none";
     notFoundElement.style.display = "none";
 
-    fetch("https://raw.githubusercontent.com/JPKMSuryaSumirat/DataPesertaJPKM/main/Peserta%20JPKM%20s.d%2010%20Juni%202025%20New.json")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Gagal memuat data");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const pesertaArray = data["Sheet1"];
-        if (!Array.isArray(pesertaArray)) throw new Error("Format data tidak sesuai");
-
-        const peserta = pesertaArray.find((item) => {
-          const namaPeserta = item["Nama Member"]?.trim().toLowerCase();
-          const jenisPaket = item["Nama Paket"]?.trim().toUpperCase();
+    fetch("Peserta%20JPKM%20s.d%2010%20Juni%202025%20New.json")
+      .then((response) => response.json())
+      .then((json) => {
+        const data = json["Sheet1"];
+        const peserta = data.find((item) => {
+          const namaPeserta = item["Nama Member"]?.toLowerCase();
+          const jenisPaket = item["Nama Paket"]?.toUpperCase();
           return namaPeserta === nameInput && jenisPaket === packageInput;
         });
 
@@ -34,12 +27,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
         if (peserta) {
           resultElement.innerHTML = `
-            <p><strong>Nama:</strong> ${peserta["Nama Member"]}</p>
-            <p><strong>No. JPKM:</strong> ${peserta["No JPKM"]}</p>
+            <p><strong>Nama Peserta:</strong> ${peserta["Nama Member"]}</p>
+            <p><strong>Tanggal Lahir:</strong> ${peserta["Tanggal Lahir"]}</p>
             <p><strong>Nama Grup:</strong> ${peserta["Nama Grup"]}</p>
-            <p><strong>Status:</strong> ${peserta["Status "]}</p>
-            <p><strong>Paket:</strong> ${peserta["Nama Paket"]}</p>
+            <p><strong>PPKBasis:</strong> ${peserta["PPKBasis"]}</p>
+            <p><strong>Klinik Layanan:</strong> ${peserta["Klinik Layanan"]}</p>
+            <p><strong>Tanggal Masuk:</strong> ${peserta["Tanggal Masuk"]}</p>
             <p><strong>Tanggal Akhir Kontrak:</strong> ${peserta["Tanggal Akhir Kontrak"]}</p>
+            <p><strong>Nama Paket:</strong> ${peserta["Nama Paket"]}</p>
           `;
           resultElement.style.display = "block";
         } else {
