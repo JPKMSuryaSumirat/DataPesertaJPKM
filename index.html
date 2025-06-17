@@ -42,24 +42,20 @@
       font-style: italic;
     }
     .logo-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
+      text-align: center;
     }
     .logo-container img {
-      max-width: 150px;
-      height: auto;
+      width: 120px;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Logo -->
   <div class="logo-container">
     <img src="JPKM LOGO.png" alt="Logo JPKM">
   </div>
 
-  <!-- Judul normal (tidak center) -->
   <h2>Pencarian Data Peserta JPKM</h2>
 
   <form id="identity-form">
@@ -76,7 +72,7 @@
   </form>
 
   <div id="loading" style="display: none;">Memuat data...</div>
-  <div id="not-found" style="display: none; color: red;">Data tidak ditemukan. Silakan periksa kembali No JPKM, nama, atau paket.</div>
+  <div id="not-found" style="display: none; color: red;">Data tidak ditemukan. Silakan periksa kembali input Anda.</div>
   <div id="result" style="display: none; margin-top: 20px;"></div>
 
   <script src="script.js"></script>
