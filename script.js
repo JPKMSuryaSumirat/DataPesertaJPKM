@@ -16,19 +16,25 @@ document.getElementById("identity-form").addEventListener("submit", function (ev
     .then((response) => response.json())
     .then((data) => {
       const peserta = data.find((item) => {
-        const namaPeserta = item["NAMA PESERTA"]?.toLowerCase();
-        const jenisPaket = item["JENIS PAKET"]?.toUpperCase();
-        return namaPeserta === nameInput && jenisPaket === packageInput;
+        const nama = item["Nama Member"]?.toLowerCase();
+        const paket = item["Nama Paket"]?.toUpperCase();
+        return nama === nameInput && paket === packageInput;
       });
 
       loadingElement.style.display = "none";
 
       if (peserta) {
         resultElement.innerHTML = `
-          <p><strong>Nama:</strong> ${peserta["NAMA PESERTA"]}</p>
-          <p><strong>No. Peserta:</strong> ${peserta["NO JPKM"]}</p>
-          <p><strong>Jenis Paket:</strong> ${peserta["JENIS PAKET"]}</p>
-          <a href="${peserta["LINK KARTU"]}" download class="download-button">Unduh Kartu PDF</a>
+          <p><strong>Nama:</strong> ${peserta["Nama Member"]}</p>
+          <p><strong>No. JPKM:</strong> ${peserta["No JPKM"]}</p>
+          <p><strong>Nama Grup:</strong> ${peserta["Nama Grup"]}</p>
+          <p><strong>Tipe Grup:</strong> ${peserta["Tipe Grup"]}</p>
+          <p><strong>PPK Basis:</strong> ${peserta["PPKBasis"]}</p>
+          <p><strong>Klinik Layanan:</strong> ${peserta["Klinik Layanan"]}</p>
+          <p><strong>Status:</strong> ${peserta["Status "]}</p>
+          <p><strong>Nama Paket:</strong> ${peserta["Nama Paket"]}</p>
+          <p><strong>Paket Tambahan:</strong> ${peserta["Paket Tambahan"]}</p>
+          <p><strong>Tanggal Akhir Kontrak:</strong> ${peserta["Tanggal Akhir Kontrak"]}</p>
         `;
         resultElement.style.display = "block";
       } else {
