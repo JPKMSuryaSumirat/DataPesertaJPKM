@@ -10,42 +10,22 @@
       max-width: 600px;
       margin: 40px auto;
       padding: 20px;
-      text-align: center;
     }
-
-    img.logo {
-      display: block;
-      margin: 0 auto 20px auto;
-      max-width: 150px;
-      height: auto;
-    }
-
-    h2 {
-      margin-bottom: 20px;
-    }
-
-    form {
-      text-align: left;
-    }
-
     input, button {
       padding: 8px;
       margin: 8px 0;
       width: 100%;
       box-sizing: border-box;
     }
-
     button {
       background-color: #28a745;
       color: white;
       border: none;
       cursor: pointer;
     }
-
     button:hover {
       background-color: #218838;
     }
-
     .download-button {
       display: inline-block;
       margin-top: 15px;
@@ -55,41 +35,6 @@
       text-decoration: none;
       border-radius: 5px;
     }
-
     .download-button:hover {
       background-color: #0056b3;
     }
-
-    #loading {
-      font-style: italic;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- LOGO -->
-  <img src="JPKM LOGO.png" alt="Logo JPKM" class="logo" />
-
-  <h2>Pencarian Data Peserta JPKM</h2>
-
-  <form id="identity-form">
-    <label for="nojpkm">No JPKM:</label>
-    <input type="text" id="nojpkm" placeholder="Contoh: AA01000003" />
-
-    <label for="name">Nama Peserta:</label>
-    <input type="text" id="name" placeholder="Contoh: Noval Anugrah Ramadan" />
-
-    <label for="package">Nama Paket:</label>
-    <input type="text" id="package" placeholder="Contoh: DASAR PLUS" />
-
-    <button type="submit">Cari</button>
-  </form>
-
-  <!-- Bagian yang dibutuhkan oleh script.js -->
-  <div id="loading" style="display: none;">Memuat data...</div>
-  <div id="not-found" style="display: none; color: red;">Data tidak ditemukan. Silakan periksa kembali No JPKM, nama atau paket.</div>
-  <div id="result" style="display: none; margin-top: 20px;"></div>
-
-  <script src="script.js"></script>
-</body>
-</html>
