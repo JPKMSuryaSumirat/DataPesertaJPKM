@@ -35,8 +35,6 @@ window.addEventListener("DOMContentLoaded", function () {
             <p><strong>Nama Grup:</strong> ${peserta["Nama Grup"]}</p>
             <p><strong>PPKBasis:</strong> ${peserta["PPKBasis"]}</p>
             <p><strong>Klinik Layanan:</strong> ${peserta["Klinik Layanan"]}</p>
-            <p><strong>Tanggal Masuk:</strong> ${peserta["Tanggal Masuk"]}</p>
-            <p><strong>Tanggal Akhir Kontrak:</strong> ${peserta["Tanggal Akhir Kontrak"]}</p>
             <p><strong>Masa Berlaku Kartu:</strong> ${peserta["Tanggal Masuk"]} s.d ${peserta["Tanggal Akhir Kontrak"]}</p>
           `;
           resultElement.style.display = "block";
