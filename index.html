@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kartu Identitas</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Library untuk export PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <img src="https://cdn.glitch.global/a821f358-d1ba-4add-bdac-f77d295d948c/JPKM%20LOGO%201999.png?v=1728890924281" alt="Logo" id="logo" />
+    <h1>Kartu Peserta JPKM</h1>
+
+    <form id="identity-form">
+      <label for="name">Nama Lengkap Peserta:</label>
+      <input type="text" id="name" required />
+
+      <label for="package">Jenis Paket:</label>
+      <input type="text" id="package" required />
+
+      <button type="submit">Cari dan Tampilkan Kartu</button>
+    </form>
+
+    <div id="loading" style="display: none;">Memuat data...</div>
+    <div id="result-container"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
