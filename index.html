@@ -1,34 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kartu Identitas</title>
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Library untuk export PDF -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <title>Cari Data Peserta JPKM</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    input, button {
+      padding: 8px;
+      margin: 8px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .download-button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .download-button:hover {
+      background-color: #0056b3;
+    }
+    #loading {
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <img src="https://cdn.glitch.global/a821f358-d1ba-4add-bdac-f77d295d948c/JPKM%20LOGO%201999.png?v=1728890924281" alt="Logo" id="logo" />
-    <h1>Kartu Peserta JPKM</h1>
 
-    <form id="identity-form">
-      <label for="name">Nama Lengkap Peserta:</label>
-      <input type="text" id="name" required />
+  <h2>Pencarian Data Peserta JPKM</h2>
 
-      <label for="package">Jenis Paket:</label>
-      <input type="text" id="package" required />
+  <form id="identity-form">
+    <label for="name">Nama Peserta:</label>
+    <input type="text" id="name" placeholder="Contoh: Noval Anugrah Ramadan" required />
 
-      <button type="submit">Cari dan Tampilkan Kartu</button>
-    </form>
+    <label for="package">Nama Paket:</label>
+    <input type="text" id="package" placeholder="Contoh: DASAR PLUS" required />
 
-    <div id="loading" style="display: none;">Memuat data...</div>
-    <div id="result-container"></div>
-  </div>
+    <button type="submit">Cari</button>
+  </form>
+
+  <!-- Bagian yang dibutuhkan oleh script.js -->
+  <div id="loading" style="display: none;">Memuat data...</div>
+  <div id="not-found" style="display: none; color: red;">Data tidak ditemukan. Silakan periksa kembali nama dan paket.</div>
+  <div id="result" style="display: none; margin-top: 20px;"></div>
 
   <script src="script.js"></script>
 </body>
