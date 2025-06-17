@@ -41,26 +41,23 @@
     #loading {
       font-style: italic;
     }
-    .logo-container {
-      text-align: center;
-    }
-    .logo-container img {
-      width: 120px;
-      margin-bottom: 20px;
+    #info-text {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #fff3cd;
+      border: 1px solid #ffeeba;
+      color: #856404;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
 
-  <div class="logo-container">
-    <img src="JPKM LOGO.png" alt="Logo JPKM">
-  </div>
-
   <h2>Pencarian Data Peserta JPKM</h2>
 
   <form id="identity-form">
-    <label for="nojpkm">No JPKM:</label>
-    <input type="text" id="nojpkm" placeholder="Contoh: AA01000003" />
+    <label for="jpkm">No. JPKM:</label>
+    <input type="text" id="jpkm" placeholder="Contoh: AA01000003" />
 
     <label for="name">Nama Peserta:</label>
     <input type="text" id="name" placeholder="Contoh: Noval Anugrah Ramadan" />
@@ -71,8 +68,21 @@
     <button type="submit">Cari</button>
   </form>
 
+  <!-- Teks Perhatian -->
+  <div id="info-text">
+    <strong>PERHATIAN!! Ketentuan Paket Siswa/Mahasiswa:</strong>
+    <ol>
+      <li>Rawat jalan wajib membawa rujukan dari PPK I jejaring JPKM</li>
+      <li>Peserta yang berobat ke UGD, agar diinfokan formulir surat pernyataan kesediaan jika tidak termasuk kriteria emergency JPKM (yang ditanggung JPKM ATS 1-4)</li>
+      <li>Dokter spesialis yang ditanggung (Dokter tetap & praktek pagi):<br/><br/>
+        <strong>PAKET SISWA:</strong> Anak, Penyakit Dalam, Kebidanan & Kandungan, Bedah Umum, Mata, THT<br/>
+        <strong>PAKET MAHASISWA:</strong> Penyakit Dalam, Kebidanan & Kandungan, Bedah Umum, Mata, THT
+      </li>
+    </ol>
+  </div>
+
   <div id="loading" style="display: none;">Memuat data...</div>
-  <div id="not-found" style="display: none; color: red;">Data tidak ditemukan. Silakan periksa kembali input Anda.</div>
+  <div id="not-found" style="display: none; color: red;">Data tidak ditemukan. Silakan periksa kembali.</div>
   <div id="result" style="display: none; margin-top: 20px;"></div>
 
   <script src="script.js"></script>
