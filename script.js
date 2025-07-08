@@ -3,8 +3,6 @@ window.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
 
     const jpkmInput = document.getElementById("nojpkm").value.trim().toUpperCase();
-    const nameInput = document.getElementById("name").value.trim().toLowerCase();
-    const packageInput = document.getElementById("package").value.trim().toUpperCase();
 
     const loadingElement = document.getElementById("loading");
     const resultElement = document.getElementById("result");
@@ -21,8 +19,6 @@ window.addEventListener("DOMContentLoaded", function () {
         const data = json["Sheet1"];
         const peserta = data.find((item) => {
           const matchJPKM = jpkmInput && item["No JPKM"]?.toUpperCase() === jpkmInput;
-          const matchName = nameInput && item["Nama Member"]?.toLowerCase() === nameInput;
-          const matchPackage = packageInput && item["Nama Paket"]?.toUpperCase() === packageInput;
           return matchJPKM || (matchName && matchPackage);
         });
 
