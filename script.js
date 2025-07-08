@@ -28,7 +28,7 @@ window.addEventListener("DOMContentLoaded", function () {
           resultElement.innerHTML = `
             <p><strong>Nama:</strong> ${peserta["Nama Member"]}</p>
             <p><strong>Nama Paket:</strong> ${peserta["Nama Paket"]}</p>
-            <p><strong>Kode Plafon:</strong> ${peserta["Kode Plafon"]}</p>
+            <p><strong>Kode Plafond:</strong> ${peserta["Kode Plafond"]}</p>
             <p><strong>Tanggal Lahir:</strong> ${peserta["Tanggal Lahir"]}</p>
             <p><strong>Nama Grup:</strong> ${peserta["Nama Grup"]}</p>
             <p><strong>PPKBasis:</strong> ${peserta["PPKBasis"]}</p>
