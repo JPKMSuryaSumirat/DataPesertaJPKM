@@ -13,10 +13,10 @@ window.addEventListener("DOMContentLoaded", function () {
     resultElement.style.display = "none";
     notFoundElement.style.display = "none";
 
-    fetch("Peserta%20JPKM%20s.d%2010%20Juni%202025%20New.json")
+    fetch("Peserta%20JPKM%20s.d%2010%20Juli%202025%20New.json")
       .then((response) => response.json())
       .then((json) => {
-        const data = json["Sheet1"];
+        const data = json["Peserta_11-07-2025"] || [];
         const peserta = data.find((item) => {
           const matchJPKM = jpkmInput && item["No JPKM"]?.toUpperCase() === jpkmInput;
           return matchJPKM;
@@ -27,11 +27,11 @@ window.addEventListener("DOMContentLoaded", function () {
         if (peserta) {
           resultElement.innerHTML = `
             <p><strong>Nama:</strong> ${peserta["Nama Member"]}</p>
-            <p><strong>Nama Paket:</strong> ${peserta["Nama Paket"]}</p>
+            <p><strong>Nama Paket:</strong> ${peserta["Paket"]}</p>
             <p><strong>Rawat Inap:</strong> ${peserta["Kode Plafond"]}</p>
             <p><strong>Tanggal Lahir:</strong> ${peserta["Tanggal Lahir"]}</p>
-            <p><strong>Nama Grup:</strong> ${peserta["Nama Grup"]}</p>
-            <p><strong>PPK Basis:</strong> ${peserta["PPKBasis"]}</p>
+            <p><strong>Nama Grup:</strong> ${peserta["Grup"]}</p>
+            <p><strong>PPK Basis:</strong> ${peserta["PPK Basis"]}</p>
             <p><strong>Klinik Layanan:</strong> ${peserta["Klinik Layanan"]}</p>
             <p><strong>Masa Berlaku Kartu:</strong> ${peserta["Tanggal Masuk"]} s.d ${peserta["Tanggal Akhir Kontrak"]}</p>
           `;
