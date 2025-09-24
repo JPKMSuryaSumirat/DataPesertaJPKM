@@ -33,6 +33,7 @@ window.addEventListener("DOMContentLoaded", function () {
             <p><strong>Nama Grup:</strong> ${peserta["Grup"]}</p>
             <p><strong>PPK Basis:</strong> ${peserta["PPK Basis"]}</p>
             <p><strong>Klinik Layanan:</strong> ${peserta["Klinik Layanan"]}</p>
+            <p><strong>Gigi:</strong> ${peserta["Paket Tambahan"]}</p>
             <p><strong>Masa Berlaku Kartu:</strong> ${peserta["Tanggal Masuk"]} s.d ${peserta["Tanggal Akhir Kontrak"]}</p>
           `;
           resultElement.style.display = "block";
@@ -50,3 +51,4 @@ window.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
+
